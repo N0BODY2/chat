@@ -1,0 +1,123 @@
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+.color-0{color: #ffffff;}
+.color-1{color: #ff4444;}
+.color-2{color: #99cc00;}
+.color-3{color: #ffbb33;}
+.color-4{color: #0099cc;}
+.color-5{color: #33b5e5;}
+.color-6{color: #aa66cc;}
+.color-8{color: #cc0000;}
+.color-9{color: #cc0068;}
+
+* {
+  font-family: 'Barlow Condensed', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.no-grow {
+  flex-grow: 0;
+}
+
+em {
+  font-style: normal;
+}
+
+#app {
+  font-family: 'Barlow Condensed', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-color: transparent;
+}
+
+.chat-window {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 38%;
+  height: 560px;
+  background-color: rgba(255, 255, 255, 0);
+  animation-duration: 2s;
+  -webkit-animation-duration: 2s;
+}
+
+.chat-messages {
+  max-height: 85%;
+  font-size: 1.0rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.chat-input {
+  font-size: 1.0rem;
+  position: absolute;
+
+  top: 245px;
+  left: 12px;
+  width: 38%;
+
+  box-sizing: border-box;
+}
+
+.prefix {
+  position: absolute;
+  margin-top: 6.5px;
+  left: 4px;
+}
+
+textarea {
+  font-size: 1.1rem;
+  display: block;
+  box-sizing: border-box;
+  padding: 7px;
+  padding-left: 24px;
+  color: white;
+  background-color: rgba( 160, 160, 160, 0.2);
+  width: 540px;
+  border: 1px solid #000000;
+  height: 34px;
+  overflow: hidden;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+.msg {
+  margin-bottom: 1px;
+}
+
+.multiline {
+  margin-left: 1.5rem;
+  text-indent: -1.5rem;
+  white-space: pre-line;
+}
+
+.suggestions {
+  list-style-type: none;
+  padding: 3px;
+  padding-left: 25px;
+  font-size: 1.0rem;
+  box-sizing: border-box;
+  color: white;
+  background-color: rgba( 160, 160, 160, 0.2);
+  width: 74%;
+  border: 1px solid #000000;
+}
+
+.help {
+  color: #b0bbbd;
+}
+
+.disabled {
+  color: #b0bbbd;
+}
+
+.suggestion {
+  margin-bottom: 3px;
+}
