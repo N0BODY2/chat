@@ -6,13 +6,13 @@ If you have some errors or bugs just put it in issues and i will fix it ASAP :)
 
 thx for your time hope you like the work
 
-Installation :
+# Installation :
 
  1. Put the chat and rpchat folders into your resources folder
  2. Add start before jobs and after es_extended in your server.cfg
  3. If you need more options like /ooc etc use server.lua
 
-Dependency : 
+# Dependency : 
   es_extended
 
 
