@@ -13,7 +13,7 @@ thx for your time hope you like the work
  3. If you need more options like /ooc etc use server.lua
 
 # Dependency : 
-  es_extended
+- es_extended
 
 
 Original : https://github.com/esx-framework/esx_rpchat
