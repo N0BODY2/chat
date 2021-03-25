@@ -28,12 +28,7 @@ AddEventHandler('esx_rpchat:sendProximityMessage', function(playerId, title, mes
   local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
   local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
-  if target == source then
-    TriggerEvent('chat:addMessage', {
-      template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(202, 83, 220, 0.6); border-radius: 10px;"><i class="fas fa-user-circle"></i> {0}: {1}</div>',
-        args = { title, message }
-    })
-  elseif GetDistanceBetweenCoords(sourceCoords, targetCoords, true) < 20 then
+  if targetPed == source or #(playerCoords - targetCoords) < 20 then
     TriggerEvent('chat:addMessage', {
       template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(202, 83, 220, 0.6); border-radius: 10px;"><i class="fas fa-user-circle"></i> {0}: {1}</div>',
         args = { title, message }
@@ -49,40 +44,12 @@ AddEventHandler('esx_rpchat:sendMe', function(playerId, title, message, color)
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
-	if target == source then
-		TriggerEvent('chat:addMessage', {
-      template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(202, 83, 220, 0.6); border-radius: 10px;"><i class="fas fa-user-circle"></i> {0}: {1}</div>',
-        args = { title, message }
-    })
-	elseif GetDistanceBetweenCoords(sourceCoords, targetCoords, true) < 20 then
+	if targetPed == source or #(playerCoords - targetCoords) < 20 then
 		TriggerEvent('chat:addMessage', {
       template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(202, 83, 220, 0.6); border-radius: 10px;"><i class="fas fa-user-circle"></i> {0}: {1}</div>',
         args = { title, message }
     })
 	end
-end)
-
-RegisterCommand('roll', function(source, args, rawCommand)
-  local number = math.random(1,6)
-  ExecuteCommand('me Hazim kostkou')
-	ExecuteCommand('doc 2')
-  Citizen.Wait(3000)
-  ExecuteCommand('do Spadlo ' ..number)
-end)
-
-RegisterCommand('coin', function(source, args, rawCommand)
-  local luck = math.random(1,2)
-  if luck == 2 then
-  ExecuteCommand('me Hazim minci')
-  ExecuteCommand('doc 2')
-  Citizen.Wait(3000)
-  ExecuteCommand('do Hodil si pannu')
-  elseif luck == 1 then 
-  ExecuteCommand('me Hazim minci')
-  ExecuteCommand('doc 2')
-  Citizen.Wait(3000)
-  ExecuteCommand('do Hodil si orla')
-end
 end)
 
 RegisterNetEvent('esx_rpchat:sendDo')
@@ -93,14 +60,9 @@ AddEventHandler('esx_rpchat:sendDo', function(playerId, title, message, color)
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
-	if target == source then
+	if targetPed == source or #(playerCoords - targetCoords) < 20 then
 		TriggerEvent('chat:addMessage', {
       template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(220, 173, 17, 0.6); border-radius: 10px;"><i class="fas fa-users"></i> {0}: {1}</div>',
-        args = { title, message }
-    })
-	elseif GetDistanceBetweenCoords(sourceCoords, targetCoords, true) < 20 then
-		TriggerEvent('chat:addMessage', {
-    template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(220, 173, 17, 0.6); border-radius: 10px;"><i class="fas fa-user-street-view"></i> {0}: {1}</div>',
         args = { title, message }
     })
 	end
@@ -114,12 +76,7 @@ AddEventHandler('esx_rpchat:sendLocalOOC', function(playerId, title, message, co
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
-	if target == source then
-		TriggerEvent('chat:addMessage', {
-      template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(99, 99, 99, 0.3); border-radius: 10px;"><i class="fas fa-street-view"></i> {0}: {1}</div>',
-        args = { title, message }
-    })
-	elseif GetDistanceBetweenCoords(sourceCoords, targetCoords, true) < 20 then
+	if targetPed == source or #(playerCoords - targetCoords) < 20 then
 		TriggerEvent('chat:addMessage', {
       template = '<div style="padding: 0.45vw; margin: 0.05vw; background-color: rgba(99, 99, 99, 0.3); border-radius: 10px;"><i class="fas fa-street-view"></i> {0}: {1}</div>',
         args = { title, message }
