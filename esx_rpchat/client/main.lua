@@ -1,25 +1,3 @@
-local PlayerData              = {}
-local nbrDisplaying = 1
-ESX                           = nil
-
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-
-	while ESX.GetPlayerData().job == nil do
-		Citizen.Wait(10)
-	end
-
-	PlayerData = ESX.GetPlayerData()
-end)
-
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-	PlayerData.job = job
-end)
-
 RegisterNetEvent('esx_rpchat:sendMe')
 AddEventHandler('esx_rpchat:sendMe', function(playerId, title, message, color)
 	local source = PlayerId()
@@ -78,42 +56,6 @@ AddEventHandler('esx_rpchat:getCoords', function(player)
     TriggerServerEvent('esx_rpchat:showCoord', player, message)
 
 end)
-
-announcestring = false
-lastfor = 10
-
-RegisterNetEvent('announce')
-announcestring = false
-AddEventHandler('announce', function(msg)
-	announcestring = msg
-	PlaySoundFrontend(-1, "DELETE","HUD_DEATHMATCH_SOUNDSET", 1)
-	Citizen.Wait(lastfor * 1000)
-	announcestring = false
-end)
-
-function Initialize(scaleform)
-    local scaleform = RequestScaleformMovie(scaleform)
-    while not HasScaleformMovieLoaded(scaleform) do
-        Citizen.Wait(0)
-    end
-    PushScaleformMovieFunction(scaleform, "SHOW_SHARD_WASTED_MP_MESSAGE")
-	PushScaleformMovieFunctionParameterString("~r~Oznámení")
-    PushScaleformMovieFunctionParameterString(announcestring)
-    PopScaleformMovieFunctionVoid()
-    return scaleform
-end
-
-
-Citizen.CreateThread(function()
-while true do
-	Citizen.Wait(0)
-    if announcestring then
-		scaleform = Initialize("mp_big_message_freemode")
-		DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255, 0)
-    end
-end
-end)
-
 
 Citizen.CreateThread(function()
   TriggerEvent('chat:addSuggestion', '/tweet',  _U('twt_help'),  { { name = _U('generic_argument_name'), help = _U('generic_argument_help') } } )

@@ -100,7 +100,6 @@ TriggerEvent('es:addCommand', 'doc', function(source, args, rawCommand)
   end
 end)
 
---[[
 TriggerEvent("es:addGroupCommand", "announce", "admin", function(source, args, rawCommand)
   local playerName = GetPlayerName(source)
  --  local msg = rawCommand:sub(6)
@@ -113,18 +112,7 @@ TriggerEvent("es:addGroupCommand", "announce", "admin", function(source, args, r
       template = '<div style="padding: 0.45vw; margin: 0.15vw; background-color: rgba(204, 0, 0, 0.9); border-radius: 20px;"><i class="fas fa-bullhorn"></i>  Oznámení: {0}</div>',
       args = { toSay }
   })
-end, false)]]
-
-msg = ""
-RegisterCommand('announce', function(source, args, user)
-	if IsPlayerAceAllowed(source, "command") then
-			for i,v in pairs(args) do
-				msg = msg .. " " .. v
-			end
-			TriggerClientEvent("announce", -1, msg)
-			msg = ""
-    end
-end)
+end, false)
 
 -- TWEET
 RegisterCommand('tweet', function(source, args, rawCommand)
@@ -331,45 +319,4 @@ TriggerEvent('es:addCommand', 'inzerat', function(source, args, rawCommand)
       args = {}
     })
   end
-end, false)--]]
-
--- Get Character name
-function GetCharacterName(source)
-  local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
-    ['@identifier'] = GetPlayerIdentifiers(source)[1]
-  })
-
-  if result[1] and result[1].firstname and result[1].lastname then
-    if Config.OnlyFirstname then
-      return result[1].firstname
-    else
-      return ('%s %s'):format(result[1].firstname, result[1].lastname)
-    end
-  else
-    return GetPlayerName(source)
-  end
-end
-
-function GetCharacterJobName(source) 
-  local result = MySQL.Sync.fetchAll('SELECT job FROM users WHERE identifier = @identifier', {
-    ['@identifier'] = GetPlayerIdentifiers(source)[1]
-  })
-
-  if result[1] and result[1].job then
-    return result[1].job
-  end
-
-  return nil
-end
-
-function GetCharacterPhoneNumber(source)
-  local result = MySQL.Sync.fetchAll('SELECT phone_number FROM users WHERE identifier = @identifier', {
-    ['@identifier'] = GetPlayerIdentifiers(source)[1]
-  })
-
-  if result[1] and result[1].phone_number then
-    return result[1].phone_number
-  end
-
-  return nil
-end
+end, false)

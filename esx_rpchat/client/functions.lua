@@ -1,3 +1,5 @@
+local nbrDisplaying = 1
+
 RegisterNetEvent('3dme:triggerDisplay')
 AddEventHandler('3dme:triggerDisplay', function(text, source)
     local offsetme = 2.04 + (nbrDisplaying*0.15)
