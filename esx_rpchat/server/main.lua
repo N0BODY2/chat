@@ -10,18 +10,6 @@ AddEventHandler('es:invalidCommandHandler', function(source, command_args, user)
     })
 end)
 
-
-RegisterServerEvent('sendmetoall')
-AddEventHandler('sendmetoall', function(message)
-  local _source = source
-  local name = GetCharacterName(_source)
-  xPlayer = ESX.GetPlayerFromId(_source)
-
-  TriggerClientEvent('esx_rpchat:sendProximityMessage', -1, xPlayer.source, name, message, { 186, 0, 255 })
-  TriggerClientEvent('3dme:triggerDisplay', -1, message, xPlayer.source)
-end)
-
-
 -- GPS command
 RegisterCommand('gps', function(source, args, raw)
  TriggerClientEvent('esx_rpchat:getCoords', source, source);
