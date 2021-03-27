@@ -3,19 +3,28 @@ local nbrDisplaying = 1
 RegisterNetEvent('3dme:triggerDisplay')
 AddEventHandler('3dme:triggerDisplay', function(text, source)
     local offsetme = 2.04 + (nbrDisplaying*0.15)
-    DisplayMe(GetPlayerFromServerId(source), text, offsetme)
+    local ped = GetPlayerFromServerId(source)
+    if ped ~= -1 then
+    DisplayMe(ped, text, offsetme)
+    end
 end)
 
 RegisterNetEvent('3ddo:triggerDisplay')
 AddEventHandler('3ddo:triggerDisplay', function(text, source)
     local offsetdo = 2.34 + (nbrDisplaying*0.15)
-    DisplayDo(GetPlayerFromServerId(source), text, offsetdo)
+    local ped = GetPlayerFromServerId(source)
+    if ped ~= -1 then
+    DisplayDo(ped, text, offsetdo)
+    end
 end)
 
 RegisterNetEvent('3ddoa:triggerDisplay')
 AddEventHandler('3ddoa:triggerDisplay', function(text, source)
     local offsetdoa = 2.34 + (nbrDisplaying*0.15)
-    DisplayDoa(GetPlayerFromServerId(source), text, offsetdoa)
+    local ped = GetPlayerFromServerId(source)
+    if ped ~= -1 then
+    DisplayDoa(ped, text, offsetdoa)
+    end
 end)
 
 function DisplayMe(mePlayer, text, offsetme)

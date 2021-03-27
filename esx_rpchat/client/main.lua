@@ -3,6 +3,7 @@ AddEventHandler('esx_rpchat:sendMe', function(playerId, title, message, color)
 	local source = PlayerId()
 	local target = GetPlayerFromServerId(playerId)
 
+	if target ~= -1 then
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
@@ -12,6 +13,7 @@ AddEventHandler('esx_rpchat:sendMe', function(playerId, title, message, color)
         args = { title, message }
     })
 	end
+  end
 end)
 
 RegisterNetEvent('esx_rpchat:sendDo')
@@ -19,6 +21,7 @@ AddEventHandler('esx_rpchat:sendDo', function(playerId, title, message, color)
 	local source = PlayerId()
 	local target = GetPlayerFromServerId(playerId)
 
+	if target ~= -1 then
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
@@ -28,6 +31,7 @@ AddEventHandler('esx_rpchat:sendDo', function(playerId, title, message, color)
         args = { title, message }
     })
 	end
+  end
 end)
 
 RegisterNetEvent('esx_rpchat:sendLocalOOC')
@@ -35,6 +39,7 @@ AddEventHandler('esx_rpchat:sendLocalOOC', function(playerId, title, message, co
 	local source = PlayerId()
 	local target = GetPlayerFromServerId(playerId)
 
+	if target ~= -1 then
 	local sourcePed, targetPed = PlayerPedId(), GetPlayerPed(target)
 	local sourceCoords, targetCoords = GetEntityCoords(sourcePed), GetEntityCoords(targetPed)
 
@@ -44,6 +49,7 @@ AddEventHandler('esx_rpchat:sendLocalOOC', function(playerId, title, message, co
         args = { title, message }
     })
 	end
+  end
 end)
 
 RegisterNetEvent('esx_rpchat:getCoords')
