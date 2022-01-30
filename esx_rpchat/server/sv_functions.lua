@@ -1,44 +1,48 @@
 function GetCharacterName(source)
-  local xPlayer = ESX.GetPlayerFromId(source)
-  if not Config.usingIdentity then
-    local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
-      ['@identifier'] = GetPlayerIdentifiers(source)[1]
-    })
-
-    if result[1] and result[1].firstname and result[1].lastname then
-      if Config.OnlyFirstname then
-        return result[1].firstname
-      else
-        return ('%s %s'):format(result[1].firstname, result[1].lastname)
+  if Config.EnableESXIdentity then
+    local xPlayer = ESX.GetPlayerFromId(source)
+    if xPlayer then 
+      if xPlayer.getName() == GetPlayerName(source) then 
+        local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
+          ['@identifier'] = GetPlayerIdentifiers(source)[1]
+        })
+    
+        if result[1] and result[1].firstname and result[1].lastname then
+          if Config.OnlyFirstname then
+            return result[1].firstname
+          else
+            return ('%s %s'):format(result[1].firstname, result[1].lastname)
+          end
+        end
+      elseif xPlayer.getName() ~= GetPlayerName(source) then 
+        return xPlayer.getName()
       end
-    else
-      return GetPlayerName(source)
     end
   else
-    return xPlayer.getName()
+    return GetPlayerName(source)
   end
 end
 
 function GetCharacterJobName(source) 
-  local result = MySQL.Sync.fetchAll('SELECT job FROM users WHERE identifier = @identifier', {
-    ['@identifier'] = GetPlayerIdentifiers(source)[1]
-  })
-
-  if result[1] and result[1].job then
-    return result[1].job
+  local xPlayer = ESX.GetPlayerFromId(source)
+  if xPlayer then 
+    return xPlayer.job.name
   end
-
-  return nil
 end
 
 function GetCharacterPhoneNumber(source)
-  local result = MySQL.Sync.fetchAll('SELECT phone_number FROM users WHERE identifier = @identifier', {
-    ['@identifier'] = GetPlayerIdentifiers(source)[1]
-  })
-
-  if result[1] and result[1].phone_number then
-    return result[1].phone_number
+  local xPlayer = ESX.GetPlayerFromId(source)
+  if xPlayer then 
+    if xPlayer.get('phoneNumber') ~= nil then 
+      return xPlayer.get('phoneNumber')
+    else
+      local result = MySQL.Sync.fetchAll('SELECT phone_number FROM users WHERE identifier = @identifier', {
+        ['@identifier'] = GetPlayerIdentifiers(source)[1]
+      })
+    
+      if result[1] and result[1].phone_number then
+        return result[1].phone_number
+      end
+    end
   end
-
-  return nil
 end

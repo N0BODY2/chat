@@ -5,7 +5,7 @@ AddEventHandler('3dme:triggerDisplay', function(text, source)
     local offsetme = 2.04 + (nbrDisplaying*0.15)
     local ped = GetPlayerFromServerId(source)
     if ped ~= -1 then
-    DisplayMe(ped, text, offsetme)
+        DisplayMe(ped, text, offsetme)
     end
 end)
 
@@ -14,7 +14,7 @@ AddEventHandler('3ddo:triggerDisplay', function(text, source)
     local offsetdo = 2.34 + (nbrDisplaying*0.15)
     local ped = GetPlayerFromServerId(source)
     if ped ~= -1 then
-    DisplayDo(ped, text, offsetdo)
+        DisplayDo(ped, text, offsetdo)
     end
 end)
 
@@ -23,7 +23,7 @@ AddEventHandler('3ddoa:triggerDisplay', function(text, source)
     local offsetdoa = 2.34 + (nbrDisplaying*0.15)
     local ped = GetPlayerFromServerId(source)
     if ped ~= -1 then
-    DisplayDoa(ped, text, offsetdoa)
+        DisplayDoa(ped, text, offsetdoa)
     end
 end)
 
@@ -41,7 +41,7 @@ function DisplayMe(mePlayer, text, offsetme)
             Wait(0)
             local coordsMe = GetEntityCoords(GetPlayerPed(mePlayer), false)
             local coords = GetEntityCoords(PlayerPedId(), false)
-            local dist = Vdist2(coordsMe, coords)
+            local dist = #(coordsMe - coords)
             if dist < 500 then
                  DrawText3Dme(coordsMe['x'], coordsMe['y'], coordsMe['z']+offsetme-1.250, text)
             end
@@ -64,7 +64,7 @@ function DisplayDo(mePlayer, text, offsetdo)
             Wait(0)
             local coordsMe = GetEntityCoords(GetPlayerPed(mePlayer), false)
             local coords = GetEntityCoords(PlayerPedId(), false)
-            local dist = Vdist2(coordsMe, coords)
+            local dist = #(coordsMe - coords)
             if dist < 500 then
                  DrawText3Ddo(coordsMe['x'], coordsMe['y'], coordsMe['z']+offsetdo-1.250, text)
             end
@@ -87,7 +87,7 @@ function DisplayDoa(mePlayer, text, offsetdoa)
             Wait(0)
             local coordsMe = GetEntityCoords(GetPlayerPed(mePlayer), false)
             local coords = GetEntityCoords(PlayerPedId(), false)
-            local dist = Vdist2(coordsMe, coords)
+            local dist = #(coordsMe - coords)
             if dist < 500 then
                  DrawText3Ddo(coordsMe['x'], coordsMe['y'], coordsMe['z']+offsetdoa-1.250, text)
             end
@@ -99,7 +99,7 @@ end
 function DrawText3Dme(x,y,z, text)
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local p = GetGameplayCamCoords()
-  local distance = #(p.x, p.y, p.z, - x, y, z,)
+  local distance = #(p.x, p.y, p.z - x, y, z,)
   local scale = (1 / distance) * 2
   local fov = (1 / GetGameplayCamFov()) * 100
   local scale = scale * fov
@@ -120,7 +120,7 @@ end
 function DrawText3Ddo(x,y,z, text)
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local p = GetGameplayCamCoords()
-  local distance = #(p.x, p.y, p.z, - x, y, z,)
+  local distance = #(p.x, p.y, p.z - x, y, z,)
   local scale = (1 / distance) * 2
   local fov = (1 / GetGameplayCamFov()) * 100
   local scale = scale * fov
@@ -141,7 +141,7 @@ end
 function DrawText3Ddoa(x,y,z, text)
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local p = GetGameplayCamCoords()
-  local distance = #(p.x, p.y, p.z, - x, y, z,)
+  local distance = #(p.x, p.y, p.z - x, y, z,)
   local scale = (1 / distance) * 2
   local fov = (1 / GetGameplayCamFov()) * 100
   local scale = scale * fov
