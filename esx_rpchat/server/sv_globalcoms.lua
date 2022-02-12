@@ -214,7 +214,7 @@ RegisterCommand('doc', function(source, args, raw)
   local name = GetCharacterName(source)
   if args[1] ~= nil then 
     local counter_doc = 0
-    local pocetOpakovani = tonumber(args)
+    local pocetOpakovani = tonumber(args[1])
     if pocetOpakovani < 101 then
       while counter_doc < pocetOpakovani do
           counter_doc = counter_doc + 1 
