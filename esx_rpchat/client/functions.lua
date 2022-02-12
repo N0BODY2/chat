@@ -99,7 +99,7 @@ end
 function DrawText3Dme(x,y,z, text)
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local p = GetGameplayCamCoords()
-  local distance = #(p.x, p.y, p.z - x, y, z,)
+  local distance = #(vector3(p.x, p.y, p.z) - vector3(x, y, z))
   local scale = (1 / distance) * 2
   local fov = (1 / GetGameplayCamFov()) * 100
   local scale = scale * fov
@@ -120,7 +120,7 @@ end
 function DrawText3Ddo(x,y,z, text)
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local p = GetGameplayCamCoords()
-  local distance = #(p.x, p.y, p.z - x, y, z,)
+  local distance = #(vector3(p.x, p.y, p.z) - vector3(x, y, z))
   local scale = (1 / distance) * 2
   local fov = (1 / GetGameplayCamFov()) * 100
   local scale = scale * fov
